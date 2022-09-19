@@ -1,0 +1,190 @@
+﻿{
+  "TrainingTime": 90,
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "C:\\ws\\git\\ML_learning_dotNet\\WiFi_Indoor_Localization\\wifi_localization_data.csv",
+    "Delimiter": ";",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "RSSI1",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      },
+      {
+        "ColumnName": "RSSI2",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      },
+      {
+        "ColumnName": "RSSI3",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      },
+      {
+        "ColumnName": "RSSI4",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      },
+      {
+        "ColumnName": "RSSI5",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      },
+      {
+        "ColumnName": "RSSI6",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      },
+      {
+        "ColumnName": "RSSI7",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 2
+      },
+      {
+        "ColumnName": "Room",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 2
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 1,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LightGbmMulti",
+        "Score": 0.97739898989899,
+        "RuntimeInSeconds": 0.04
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.97601010101010111,
+        "RuntimeInSeconds": 0.133
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.97601010101010111,
+        "RuntimeInSeconds": 0.038
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.97601010101010111,
+        "RuntimeInSeconds": 0.037
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.97601010101010111,
+        "RuntimeInSeconds": 0.035
+      }
+    ],
+    "Pipeline": {
+      "parameter": {
+        "0": {
+          "OutputColumnNames": [
+            "RSSI1",
+            "RSSI2",
+            "RSSI3",
+            "RSSI4",
+            "RSSI5",
+            "RSSI6",
+            "RSSI7"
+          ],
+          "InputColumnNames": [
+            "RSSI1",
+            "RSSI2",
+            "RSSI3",
+            "RSSI4",
+            "RSSI5",
+            "RSSI6",
+            "RSSI7"
+          ]
+        },
+        "1": {
+          "InputColumnNames": [
+            "RSSI1",
+            "RSSI2",
+            "RSSI3",
+            "RSSI4",
+            "RSSI5",
+            "RSSI6",
+            "RSSI7"
+          ],
+          "OutputColumnName": "Features"
+        },
+        "2": {
+          "OutputColumnName": "Room",
+          "InputColumnName": "Room"
+        },
+        "3": {
+          "NumberOfLeaves": 133,
+          "MinimumExampleCountPerLeaf": 83,
+          "LearningRate": 0.99999977667298645,
+          "NumberOfTrees": 12,
+          "SubsampleFraction": 0.034320866805518643,
+          "MaximumBinCountPerFeature": 328,
+          "FeatureFraction": 0.61859446629229942,
+          "L1Regularization": 2.8826281394825804E-07,
+          "L2Regularization": 3.9886347861714742E-06,
+          "LabelColumnName": "Room",
+          "FeatureColumnName": "Features"
+        },
+        "4": {
+          "OutputColumnName": "PredictedLabel",
+          "InputColumnName": "PredictedLabel"
+        }
+      },
+      "estimators": [
+        "ReplaceMissingValues",
+        "Concatenate",
+        "MapValueToKey",
+        "LightGbmMulti",
+        "MapKeyToValue"
+      ]
+    },
+    "MetricName": "MacroAccuracy"
+  },
+  "Type": "TrainingConfig",
+  "Version": 2
+}
